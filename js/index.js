@@ -15,30 +15,26 @@ mouseOver1.addEventListener('mouseover', function(event) {
 }, false);
 
 
+
+
+
 // Keydown
 
+const container = document.querySelector('.container');
 
 
 document.addEventListener('keydown', logKey);
 
 function logKey(e) {
-    container.textContent += ` ${e.code}`;
+    console.log(e);
 }
 
 
 
 // Wheel
 
+// const makeBigger = document.querySelector('.destination');
 
-// const myWheel = document.getElementsByClassName('content-destination');
-
-
-// myWheel.addEventListener('wheel', () => {
-//     return myWheel = '35px'
-// });
-
-
-const makeBigger = document.querySelector('.destination');
 
 
 function zoom(wheel) {
@@ -56,3 +52,14 @@ function zoom(wheel) {
 let scale = 1;
 // const el1 = document.querySelector('.destination');
 makeBigger.onwheel = zoom;
+
+
+
+// dbclick
+
+
+const card = document.querySelectorAll('.expand');
+
+card.addEventListener('dblclick', () => {
+    card.classList.toggle('large');
+})
