@@ -18,30 +18,88 @@ function logsKey(e) {
 }
 
 
-//Wheel
 
-function zoomIn(event) {
-    event.preventDefault();
 
-    scale += event.deltaY * -.01;
+// scale btn
 
-    //Restrict scale
-    scale = Math.min(Math.max(.125, scale), 4);
+const img1 = document.querySelectorAll('.content-pick .btn');
 
-    //Apply scale transform
-    img1.style.transform = `scale(${scale})`;
+img1.forEach((imgs) => {
+    imgs.addEventListener('wheel', (e) => {
+        scale += event.deltaY * -.01;
 
-}
+        //Restrict scale
+        scale = Math.min(Math.max(.125, scale), 4);
+
+        //Apply scale transform
+        e.target.style.transform = `scale(${scale})`;
+
+    })
+
+})
 
 let scale = 1;
 
-const img1 = document.querySelector('div.destination');
-
-// img1.onwheel = zoomIn;
 
 
-img1.addEventListener('wheel', zoomIn);
 
+// Resize
+
+const height = document.querySelector('.heightEvent')
+const width = document.querySelector('.widthEvent')
+
+function screenSize() {
+    height.textContent = window.innerHeight;
+    width.textContent = window.innerWidth
+}
+
+
+window.onresize = screenSize;
+
+
+
+
+
+// dbclick
+
+const imgToggle = document.querySelectorAll('.content-section img');
+
+
+
+imgToggle.forEach((imgs) => {
+    imgs.addEventListener('dblclick', (e) => {
+        e.target.classList.toggle('large');
+    });
+})
+
+
+// change event
+
+const selectingEvent = document.querySelector('.destinationA');
+
+
+selectingEvent.addEventListener('change', (e) => {
+    const result = document.querySelector('.result')
+    result.textContent = `You're traveling to ${event.target.value}`;
+})
+
+
+
+//stop propagation
+
+const letsgo = document.querySelector('.text-content');
+
+letsgo.addEventListener('mouseover', (e) => {
+    e.target.style.color = 'blue';
+})
+
+
+const letsgop = document.querySelector('.text-content p');
+
+letsgop.addEventListener('mouseover', (e) => {
+    event.stopPropagation();
+    e.target.style.color = 'green';
+})
 
 
 
